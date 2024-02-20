@@ -2,6 +2,7 @@ import { useState, createContext, useEffect } from "react";
 import { MovieDetailsProps } from "../types/movieDetailsType";
 
 import API_KEY from "../config/config";
+import useKeyDownListener from "../hooks/useKeyDownListener";
 
 export interface MovieDetailsContextProps {
   error: string;
@@ -99,6 +100,7 @@ function MovieDetailsProvider({ children }: { children: React.ReactNode }) {
     };
   }, [movieDetails, selectedID]);
 
+  /*
   useEffect(() => {
     document.addEventListener("keydown", (event) => {
       if (event.code === "Escape" && selectedID) {
@@ -114,6 +116,13 @@ function MovieDetailsProvider({ children }: { children: React.ReactNode }) {
         }
       });
   }, [selectedID]);
+  */
+
+  // Use the custom hook for handling the Escape key
+  useKeyDownListener({
+    action: handleClearSelectedMovie,
+    keys: ["Escape"],
+  });
 
   function handleSelectMovie(movieID: string) {
     setSelectedID(movieID);

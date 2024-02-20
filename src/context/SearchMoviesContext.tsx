@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { MovieProps } from "../types/movieType";
-import { tempMovieData } from "../data/movieData";
+// import { tempMovieData } from "../data/movieData";
 
 import API_KEY from "../config/config";
 
@@ -19,7 +19,7 @@ const SearchMoviesContext = createContext<SearchMoviesContextProps | undefined>(
 
 // Create a provider
 function SearchMoviesProvider({ children }: { children: React.ReactNode }) {
-  const [movies, setMovies] = useState<MovieProps[]>(tempMovieData);
+  const [movies, setMovies] = useState<MovieProps[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [query, setQuery] = useState<string>("");
   const [error, setError] = useState<string>("");
